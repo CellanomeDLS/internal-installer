@@ -1,7 +1,7 @@
 {
   "homepage": "https://cellanome.com/",
   "license": "Proprietary",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "hash": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62",
   "url": "https://dls-cellanome-s3.s3.amazonaws.com/system.1.0.1.txt",
   "depends": [
