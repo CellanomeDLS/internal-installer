@@ -2,7 +2,7 @@
   "homepage": "https://cellanome.com/",
   "license": "Proprietary",
   "version": "1.0.0",
-  "hash": "2b5204642b6477370d6b9636f024fde761d8fb791702ef782a9a0688f5533762",
+  "hash": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62",
   "url": "https://dls-cellanome-s3.s3.amazonaws.com/system.1.0.1.txt",
   "depends": [
        "internal/cellanome_vcredist.14.38.33135.0",
