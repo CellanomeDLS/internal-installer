@@ -5,18 +5,18 @@
   "hash": "2b5204642b6477370d6b9636f024fde761d8fb791702ef782a9a0688f5533762",
   "url": "https://dls-cellanome-s3.s3.amazonaws.com/system.1.0.0.txt",
   "depends": [
-       "CellanomeBucket/cellanome_vcredist.14.38.33135.0",
-       "CellanomeBucket/microscope-gui-package.1.6.3",
-       "CellanomeBucket/cellanome-folder.1.0.0",
-       "CellanomeBucket/cellanome-cudnn.8.5.0.96",
-       "CellanomeBucket/cellanome-vips.8.14.2",
-       "CellanomeBucket/cellanome-zlib.1.2.3",
-       "CellanomeBucket/cellanome-cuda-toolkit.11.6.2_511.65",
-       "CellanomeBucket/cellanome-wsl-instrument.1.0.2",
-       "CellanomeBucket/cellanome-model-weights.1.0.0",
-       "CellanomeBucket/analysis_service.0.1.7",
-       "CellanomeBucket/cellanome-live-navigator.1.0.1",
-       "CellanomeBucket/cellanome-vimba-apps.6.0.0.32034",
-       "CellanomeBucket/cellanome-moxa.4.0.0.0"
+       "internal/cellanome_vcredist.14.38.33135.0",
+       "internal/microscope-gui-package.1.6.3",
+       "internal/cellanome-folder.1.0.0",
+       "internal/cellanome-cudnn.8.5.0.96",
+       "internal/cellanome-vips.8.14.2",
+       "internal/cellanome-zlib.1.2.3",
+       "internal/cellanome-cuda-toolkit.11.6.2_511.65",
+       "internal/cellanome-wsl-instrument.1.0.2",
+       "internal/cellanome-model-weights.1.0.0",
+       "internal/analysis_service.0.1.7",
+       "internal/cellanome-live-navigator.1.0.1",
+       "internal/cellanome-vimba-apps.6.0.0.32034",
+       "internal/cellanome-moxa.4.0.0.0"
     ]
 }
