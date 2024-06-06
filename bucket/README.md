@@ -6,5 +6,5 @@ For example:
 [basename].x.y.x.json
 ```
 
-2. The base name of the manifest file up to the version number, ==**MUST NOT CHANGE**==.  If you do wish to change it,
+2. The base name of the manifest file up to the version number, **MUST NOT CHANGE**.  If you do wish to change it,
 the Install.ps1 script *may need to be updated too*.
