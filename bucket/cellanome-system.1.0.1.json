@@ -18,5 +18,8 @@
        "internal/cellanome-live-navigator.1.0.1",
        "internal/cellanome-vimba-apps.6.0.0.32034",
        "internal/cellanome-moxa.4.0.0.0"
-    ]
+    ],
+    "suggest": {
+        "VioManagerSimulator": "internal/cellanome-vio-mgr-simulator.1.0.0"
+    }
 }
