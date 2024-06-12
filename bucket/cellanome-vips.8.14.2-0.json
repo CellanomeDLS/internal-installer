@@ -1,10 +1,10 @@
 {
-  "homepage": "https://cellanome.com/",
-  "license": "Proprietary",
-  "version": "8.5.0.96",
-  "url": "https://dls-cellanome-s3.s3.amazonaws.com/System.1.0.0/cudnn-windows-x86_64-8.5.0.96_cuda11-archive.zip",
-  "hash": "bf277ed350addb8f97e0ab6a20b6fad869abe49ea24277d38ca79f5f23fbec6b",
-  "extract_dir": "cudnn-windows-x86_64-8.5.0.96_cuda11-archive",
+  "homepage": "https://www.libvips.org/",
+  "license": "LGPL-2.1-or-later",
+  "version": "8.14.2-0",
+  "url": "https://dls-cellanome-s3.s3.amazonaws.com/System.1.0.0/vips-dev-w64-web.8.14.2-0.zip",
+  "hash": "7c54be67731d20daefcb5d8e1fc66958017cdc28d0f5bf79456c2f1459852fc7",
+  "extract_dir": "vips-dev.8.14.2-0",
   "post_install": [
      "$oldPath = [Environment]::GetEnvironmentVariable(\"PATH\", [EnvironmentVariableTarget]::Machine)",
       "if ($oldPath -like \"*$dir\\bin*\") { Write-Host \"$dir\\bin is already in the PATH environment variable\" }",
