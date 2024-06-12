@@ -12,12 +12,12 @@
        "internal/cellanome-zlib.1.2.3-0",
        "internal/cellanome-cuda-toolkit.11.6.2",
        "internal/cellanome-vimba-apps.6.0.0-32034",
-       "internal/cellanome-moxa.4.0.0-0"
+       "internal/cellanome-moxa.4.0.0-0",
        "internal/cellanome-wsl-instrument.1.0.2-0",
        "internal/cellanome-model-weights.1.0.0-0",
        "internal/analysis_service.0.1.7-0",
        "internal/microscope-gui-package.1.6.3-0",
-       "internal/cellanome-live-navigator.1.0.1-0",
+       "internal/cellanome-live-navigator.1.0.1-0"
     ],
     "suggest": {
         "VioManagerSimulator": "internal/cellanome-vio-mgr-simulator.1.0.0-0"
