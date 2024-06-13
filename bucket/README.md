@@ -1,16 +1,188 @@
 # Manifest Notes
-1. In this bucket, each manifest must be versioned.
+1. A mainifest file is a scoop manifest file. See [Scoop](https://scoop.sh), the Scoop [wiki](https://github.com/ScoopInstaller/Scoop/wiki) and, most specifically, the description of [Scoop Manifest Files](https://github.com/ScoopInstaller/Scoop/wiki/App-Manifests).
+2. In this scoop bucket, each manifest file must be versioned. The versioning follows the [Semantic Versioning 2.0](https://semver.org) scheme. See the discussion in repository [instrument-installer](https://github.com/cellanome/instrument-installer/tree/main/design-documentation) for full details.
+3. A working knowledge of how Scoop Manifest files work is assumed.
+4. A working knowledge of how the Cellanome system operates is essential.
+
+
 For example:
 ```
-[basename].x.y.z.json
+[basename].x.y.z.-[optional build].json
 ```
-2. The base name of the manifest file up to the version number, **MUST NOT CHANGE**.  This is due to the fact that the installation script needs to have well known package names durring some post scoop installation processing steps. If you do wish to change it,
-the Install.ps1 script *may need to be updated too*.
-3. The top-level system manfiest file, `cellanome-system.x.y.z`, has two special sections that need to be maintained:
+Note that the base name of the manifest file up to the version number, **MUST NOT CHANGE**.  This is due to the fact that the installation script needs to have well known manifest names durring some post scoop installation processing steps. If you do wish to change it, the `Install.ps1` script *may need to be updated too*.
+
+
+## Manifest File Details
+
+Each maifest is described in detail about what it contains and does.
+Fields of interest in each manifest are pointed out with details regading anything special about the manifest and the artifact it installs
+
+Manifests:
+[System Maifest: `cellanome-system.x.y.z`](#system-maifest-cellanome-systemxyz)
+[Component Maifest: `analysis_service.x.y.z-[b]`](#component-maifest-analysis_servicexyz)
+[Component Maifest: `cellanome_vcredist.x.y.z-[b]`](#component-maifest-cellanome_vcredist143833135-0json)
+[Component Maifest: `cellanome-cuda-toolkit.x.y.z-[b]`](#component-maifest-cellanome-cuda-toolkit1162)
+[Component Maifest: `cellanome-cudnn.x.y.z-[b]`](#component-maifest-cellanome-cudnnxyz-b)
+[Component Maifest: `cellanome-folder.x.y.z-[b]`](#component-maifest-cellanome-folderxyz-b)
+[Component Maifest: `cellanome-live-navigator.x.y.z-[b]`](#component-maifest-cellanome-live-navigatorxyz-b)
+[Component Maifest: `cellanome-model-weights.x.y.z-[b]`](#component-maifest-cellanome-model-weightsxyz-b)
+[Component Maifest: `cellanome-moxa.x.y.z-[b]`](#component-maifest-cellanome-moxaxyz-b)
+[Component Maifest: `cellanome-vimba-apps.x.y.z-[b]`](#component-maifest-cellanome-vimba-appsxyz-b)
+[Component Maifest: `cellanome-vio-mgr-simulator.x.y.z-[b]`](#component-maifest-cellanome-vio-mgr-simulatorxyz-b)
+[Component Maifest: `cellanome-vips.x.y.z-[b]`](#component-maifest-cellanome-vipsxyz-b)
+[Component Maifest: `cellanome-wsl-instrument.x.y.z-[b]`](#component-maifest-cellanome-wsl-instrumentxyz-b)
+[Component Maifest: `cellanome-zlib.x.y.z-[b]`](#component-maifest-cellanome-zlibxyz-b)
+[Component Maifest: `microscope-gui-package.x.y.z-[b]`](#component-maifest-microscope-gui-packagexyz-b)
+
+
+<br>
+
+### System Maifest: `cellanome-system.x.y.z`
+
+This manifest is the top-level system manfiest file. While every maifest must have an artifact to install, the artifect specifed in the  `url` section only points to a dummy file and the contents of that artifact can be anything.
+
+This manifest has two special sections that need to be maintained:
 - the `depends` field
 - the `suggest` field
 
-### System manifest `depends` field
-This field must contain a list of manifest files that specify all the **required** packages to be installed.  These mainifests will always be installed by the installer script.
-### System manifest `suggest` field
-This field should always contain the manifest for the Vio Manager simulator *that is compatible with the given system manifest*.  This package will be installed by the intaller script only if the user confirms its installation.
+#### System manifest `depends` field
+This field must contain a list of manifest files that specify all the **required** packages to be installed for the system.  **These mainifests will always be installed by the installer script.**
+
+
+
+#### System manifest `suggest` field
+This field should always contain the manifest for the Vio Manager simulator *that is compatible with the given system manifest*.  This package will be installed by the main installer script only if the user confirms its installation.
+
+<br>
+
+### Component Maifest: `analysis_service.x.y.z-[b]`
+
+Installs the Analyis Service
+
+`url`: a zip of the anaylsis service executable and the dependent folders needed to run.
+`extract_dir`: the name of the top level folder in the zip file.
+`bin`: the name of the executable that will be scoop "shimmed".
+
+<br>
+
+### Component Maifest: `cellanome_vcredist.x.y.z-[b]`
+
+Installs the Microsoft VC++ redistributables
+
+`url`: a zip of the widely available MS VC++ runtime for Visual Studio 2022.
+`bin`: the name of the executable that will be scoop "shimmed".
+`post-install`: Since the downloaded package is an installer itself, this section are the commands to run the installer from the command line.
+
+<br>
+
+### Component Maifest: `cellanome-cuda-toolkit.x.y.z-[b]`
+
+Installs the Nvidia CUDA Toolkit
+
+Special note: this manifest is a direct copy of the publically available Nvidia Cuda Toolkit scoop installer from the Scoop [Versions](https://github.com/ScoopInstaller/Versions) bucket.  The contents should not change.
+
+<br>
+
+### Component Maifest: `cellanome-cudnn.x.y.z-[b]`
+
+Installs the Nvidia CUDA Deep Neural Network
+
+`url`: a copy of Nvidia's CUDNN zipfile.
+`extract_dir`: the name of the top level folder in the zip file.
+`post_install`: updates system PATH environment variable to include the bin folder of the extracted folders.
+
+<br>
+
+### Component Maifest: `cellanome-folder.x.y.z-[b]`
+
+Installs Cellanome configuration files
+
+`url`: a zip of the supported `.cellanome` folder.
+`extract_dir`: the name of the top level folder in the zip file.
+`post_install`: copies the extracted `.cellanome` folder to the current users home folder.
+
+<br>
+
+### Component Maifest: `cellanome-live-navigator.x.y.z-[b]`
+
+Installs Cellanome Flowcell Live application
+
+`url`: the build artifact from the live-navigator repository.
+`installer`: instructions on how to run the installer.
+
+<br>
+
+### Component Maifest: `cellanome-model-weights.x.y.z-[b]`
+
+Installs Cellanome Model Weights used by the analysis processes.  Note that durring the post install section of the main Install script, the path to this file will be updated in the `instrument_configuration.json` file.
+
+`url`: a zip of the model weights file.
+
+<br>
+
+### Component Maifest: `cellanome-moxa.x.y.z-[b]`
+
+Installs the MOXA UPort 1110/1130/1150 Windows Driver
+
+`url`: a zip of the MOXA installer.
+`installer`: (Powershell) instructions on how to run the installer extracted from the zip.
+
+<br>
+
+### Component Maifest: `cellanome-vimba-apps.x.y.z-[b]`
+
+Installs the Vimba USB Transport Layer driver and the Vimba support apps.
+
+`url`: a zip of **extracted** msi files from the publicly available Vimba installer.
+`installer`: (Powershell) instructions on how to run the installer extracted from the zip.
++ In this case, the msi installers are run **and** the `.inf` files installed by the installer are installed via the Windows [pnputil](https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/pnputil) tool.
++ Should the need to extract the msi installers from the publicly available Vimba installer again arise, run the command `Vimba_v6.0_Windows.exe /extract`.  This will open a GUI window to allow you to specify where to extract the msi files. Currently, only two msi files are used: one to install the Vimbar Transport Layer drivers and another to install the Vimba application (viewer, firmware updater, and driver installer).
+
+<br>
+
+### Component Maifest: `cellanome-vio-mgr-simulator.x.y.z-[b]`
+
+Installs the Venture IO Manager (hardware) Simulator
+
+`url`: zip of `igloo_test_suite-0.1.1-py3-none-any.whl`, `requirements.txt` and `requirements_cellanome.txt` files. See the [igloo_test_suit](https://github.com/cellanome/igloo_test_suite) github repository for details.
++ Durring the post install section of the main Install script is where the python virtual environment is created.
++ This package may or may not be installed as it's installation is controlled by user input.
+
+<br>
+
+### Component Maifest: `cellanome-vips.x.y.z-[b]`
+
+Installs the [libvips](https://www.libvips.org/) image processing library
+
+`url`: a copy of the libvips artifact. Available [here](https://github.com/libvips/libvips/releases).  Uses the "Windows binaries" and the x64 "web" version. For example, the archive named `vips-dev-w64-web-8.15.2.zip`.
+`extract_dir`: the name of the top level folder in the zip file.
+`post_install`: updates system PATH environment variable to include the bin folder of the extracted folders.
+
+<br>
+
+### Component Maifest: `cellanome-wsl-instrument.x.y.z-[b]`
+
+Installs the Cellanome WSL linux distro image and AWS credentials folder.
+
+`url`: a zip of the Instrument tarball and the current AWS credentials folder used by the WSL instance.
++ the actuall creation and configuration of the WSL instance (via the import of the tarball) occurs durring the post install section of the main installer script.
++ linkage to the AWS credentials folder also occurs durring the post install section of the main installer script.
+
+<br>
+
+### Component Maifest: `cellanome-zlib.x.y.z-[b]`
+
+Installs the [zlib](https://www.zlib.net/) compression library
+
+`url`: a zip of the zlib artifact
+`post_install`: updates system PATH environment variable to include the dll_x64 folder of the extracted folders.
+
+<br>
+
+### Component Maifest: `microscope-gui-package.x.y.z-[b]`
+
+Installs the Cellanome Microscope GUI Controller (backend) application.
+
+`url`: a zip of the Cellanome Microscope GUI Contrller artifact
+`extract_dir`: the name of the top level folder in the zip file.
+`bin`: the name of the executable that will be scoop "shimmed".
