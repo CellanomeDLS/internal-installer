@@ -35,7 +35,6 @@ Manifests:
  + [Component Manifest: `cellanome-zlib.x.y.z-[b]`](#component-Manifest-cellanome-zlibxyz-b)
  + [Component Manifest: `microscope-gui-package.x.y.z-[b]`](#component-Manifest-microscope-gui-packagexyz-b)
 
-
 <br>
 
 ### System Manifest: `cellanome-system.x.y.z`

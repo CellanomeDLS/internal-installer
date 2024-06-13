@@ -5,7 +5,7 @@
   "hash": "2b5204642b6477370d6b9636f024fde761d8fb791702ef782a9a0688f5533762",
   "url": "https://dls-cellanome-s3.s3.amazonaws.com/system.1.0.0.txt",
   "depends": [
-       "internal/cellanome_vcredist.14.38.33135-0",
+       "internal/cellanome-vcredist.14.38.33135-0",
        "internal/cellanome-folder.1.0.0-0",
        "internal/cellanome-cudnn.8.5.0-96",
        "internal/cellanome-vips.8.14.2-0",
@@ -15,7 +15,7 @@
        "internal/cellanome-moxa.4.0.0-0",
        "internal/cellanome-wsl-instrument.1.0.2-0",
        "internal/cellanome-model-weights.1.0.0-0",
-       "internal/analysis_service.0.1.7-0",
+       "internal/analysis-service.0.1.7-0",
        "internal/microscope-gui-package.1.6.3-0",
        "internal/cellanome-live-navigator.1.0.1-0"
     ],
