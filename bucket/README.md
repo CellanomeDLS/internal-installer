@@ -3,6 +3,7 @@
 2. In this scoop bucket, each manifest file must be versioned. The versioning follows the [Semantic Versioning 2.0](https://semver.org) scheme. See the discussion in repository [instrument-installer](https://github.com/cellanome/instrument-installer/tree/main/design-documentation) for full details.
 3. A working knowledge of how Scoop Manifest files work is assumed.
 4. A working knowledge of how the Cellanome system operates is essential.
++ Note to the reader: As you read the notes about each manifest, look at the contents of the manifest file. :)
 
 
 For example:
@@ -39,7 +40,7 @@ Manifests:
 
 ### System Manifest: `cellanome-system.x.y.z`
 
-This manifest is the top-level system manfiest file. While every Manifest must have an artifact to install, the artifect specifed in the  `url` section of this manifest only points to a dummy file and the contents of that artifact can be anything.
+This manifest is the top-level system manfiest file. While every Manifest must have an artifact to install, the artifect specifed in the `url` section of this manifest only points to a dummy file and the contents of that artifact can be anything.
 
 This manifest has two special sections that need to be maintained:
 - the `depends` field
@@ -51,8 +52,9 @@ This field must contain a list of manifest files that specify all the **required
 
 
 #### System manifest `suggest` field
-This field should always contain the manifest for the Vio Manager simulator *that is compatible with the given system manifest*.  This component will be installed by the main installer script only if the user confirms its installation.
-+ As of this writing, operation of both the simulation verion of the Vio Manager and the real Vio Manager is unknown at this time. $${\color{red}TBD - get and install the real vio manager}$$
+This field should always contain the manifest for the Vio Manager Simulator *that is compatible with the given system manifest*.  This component will be installed by the main installer script only if the user confirms its installation.
++ As of this writing, operation of both the simulation verion of the Vio Manager and the real Vio Manager is unknown at this time.
++ *TBD - get and install the real Vio Manager.*
 
 <br>
 
@@ -68,7 +70,7 @@ Installs the Analyis Service
 
 ### Component Manifest: `cellanome_vcredist.x.y.z-[b]`
 
-Installs the Microsoft VC++ redistributables
+Installs the Microsoft VC++ redistributables (from a copy on the Cellanome storage).
 
 `url`: a zip of the widely available MS VC++ runtime for Visual Studio 2022.
 `bin`: the name of the executable that will be scoop "shimmed".
@@ -80,13 +82,13 @@ Installs the Microsoft VC++ redistributables
 
 Installs the Nvidia CUDA Toolkit
 
-Special note: this manifest is a direct copy of the publically available Nvidia Cuda Toolkit scoop installer from the Scoop [Versions](https://github.com/ScoopInstaller/Versions) bucket.  The contents should not change.
+Special note: this manifest is a direct copy of the publically available Nvidia Cuda Toolkit scoop installer from the Scoop [Versions](https://github.com/ScoopInstaller/Versions) bucket.  The contents should not change.  Also note that this manifest retrieves the Cuda Toolkit artifact from the Nvidia storage and not the Cellanome storage.
 
 <br>
 
 ### Component Manifest: `cellanome-cudnn.x.y.z-[b]`
 
-Installs the Nvidia CUDA Deep Neural Network
+Installs the Nvidia CUDA Deep Neural Network (from a copy on the Cellanome storage).
 
 `url`: a copy of Nvidia's CUDNN zipfile.
 `extract_dir`: the name of the top level folder in the zip file.
@@ -96,7 +98,7 @@ Installs the Nvidia CUDA Deep Neural Network
 
 ### Component Manifest: `cellanome-folder.x.y.z-[b]`
 
-Installs Cellanome configuration files
+Installs Cellanome configuration files.
 
 `url`: a zip of the supported `.cellanome` folder.
 `extract_dir`: the name of the top level folder in the zip file.
@@ -109,13 +111,13 @@ Installs Cellanome configuration files
 Installs Cellanome Flowcell Live application
 
 `url`: the build artifact from the live-navigator repository.
-`installer`: instructions on how to run the installer.
+`installer`: embedded (Powershell) script commands to run the Flowcell Live application installer.
 
 <br>
 
 ### Component Manifest: `cellanome-model-weights.x.y.z-[b]`
 
-Installs Cellanome Model Weights used by the analysis processes.  Note that durring the post install section of the main Install script, the path to this file will be updated in the `instrument_configuration.json` file.
+Installs Cellanome Model Weights used by the analysis processes.  Note that during the post install section of the main Install script, the path to this file will be updated in the `instrument_configuration.json` file.
 
 `url`: a zip of the model weights file.
 
@@ -123,20 +125,20 @@ Installs Cellanome Model Weights used by the analysis processes.  Note that durr
 
 ### Component Manifest: `cellanome-moxa.x.y.z-[b]`
 
-Installs the MOXA UPort 1110/1130/1150 Windows Driver
+Installs the MOXA UPort 1110/1130/1150 Windows Driver (from a copy on the Cellanome storage).
 
-`url`: a zip of the MOXA installer.
-`installer`: (Powershell) instructions on how to run the installer extracted from the zip.
+`url`: a zip of the MOXA installer executalbe. (It is zipped due to Scoop needing to compress executables.)
+`installer`: embedded (Powershell) commands on how to run the installer extracted from the zip.
 
 <br>
 
 ### Component Manifest: `cellanome-vimba-apps.x.y.z-[b]`
 
-Installs the Vimba USB Transport Layer driver and the Vimba support apps.
+Installs the Vimba USB Transport Layer driver and the Vimba support apps (from a copy on the Cellanome storage).
 
-`url`: a zip of **extracted** msi files from the publicly available Vimba installer.
-`installer`: (Powershell) instructions on how to run the installer extracted from the zip.
-+ In this case, the msi installers are run **and** the `.inf` files installed by the installer are installed via the Windows [pnputil](https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/pnputil) tool.
+`url`: a zip of **extracted** msi installers from the publicly available Vimba installer.
+`installer`: embedded (Powershell) instructions on how to run the installers extracted from the zip.
++ In this case, the msi installers are run **and** the `.inf` files installed by the msi installer are installed via the Windows [pnputil](https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/pnputil) tool.
 + Should the need to extract the msi installers from the publicly available Vimba installer again arise, run the command `Vimba_v6.0_Windows.exe /extract`.  This will open a GUI window to allow you to specify where to extract the msi files. Currently, only two msi files are used: one to install the Vimbar Transport Layer drivers and another to install the Vimba application (viewer, firmware updater, and driver installer).
 
 <br>
@@ -153,7 +155,7 @@ Installs the Venture IO Manager (hardware) Simulator
 
 ### Component Manifest: `cellanome-vips.x.y.z-[b]`
 
-Installs the [libvips](https://www.libvips.org/) image processing library
+Installs the [libvips](https://www.libvips.org/) image processing library (from a copy on the Cellanome storage).
 
 `url`: a copy of the libvips artifact. Available [here](https://github.com/libvips/libvips/releases).  Uses the "Windows binaries" and the x64 "web" version. For example, the archive named `vips-dev-w64-web-8.15.2.zip`.
 `extract_dir`: the name of the top level folder in the zip file.
@@ -166,14 +168,14 @@ Installs the [libvips](https://www.libvips.org/) image processing library
 Installs the Cellanome WSL linux distro image and AWS credentials folder.
 
 `url`: a zip of the Instrument tarball and the current AWS credentials folder used by the WSL instance.
-+ the actuall creation and configuration of the WSL instance (via the import of the tarball) occurs durring the post install section of the main installer script.
-+ linkage to the AWS credentials folder also occurs durring the post install section of the main installer script.
++ the actuall creation and configuration of the WSL instance (via the import of the tarball) occurs during the post install section of the main installer script.
++ linkage to the AWS credentials folder also occurs during the post install section of the main installer script.
 
 <br>
 
 ### Component Manifest: `cellanome-zlib.x.y.z-[b]`
 
-Installs the [zlib](https://www.zlib.net/) compression library
+Installs the [zlib](https://www.zlib.net/) compression library (from a copy on the Cellanome storage).
 
 `url`: a zip of the zlib artifact
 `post_install`: updates system PATH environment variable to include the dll_x64 folder of the extracted folders.
