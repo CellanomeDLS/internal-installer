@@ -9,53 +9,54 @@ For example:
 ```
 [basename].x.y.z.-[optional build].json
 ```
-Note that the base name of the manifest file up to the version number, **MUST NOT CHANGE**.  This is due to the fact that the installation script needs to have well known manifest names durring some post scoop installation processing steps. If you do wish to change it, the `Install.ps1` script *may need to be updated too*.
+Note that the `[basename]` of the manifest file, **SHOULD NOT CHANGE**.  This is due to the fact that the installation script references some manifests for installation processing steps. If you do wish to change a manifest name, the `Install.ps1` script *may need to be updated* to remain in-sync. For example, the installation script needs to know name of the Analysis Service manifest, (named `analysis_service.x.y.z-[b]`) so that it can create the correct path to the executable for launching.
 
 
 ## Manifest File Details
 
-Each maifest is described in detail about what it contains and does.
-Fields of interest in each manifest are pointed out with details regading anything special about the manifest and the artifact it installs
+Each Manifest is described below in detail about what it contains and does.
+Fields of interest in each manifest are pointed out with details regading anything special about the manifest and the artifact it installs.
 
 Manifests:
- + [System Maifest: `cellanome-system.x.y.z`](#system-maifest-cellanome-systemxyz)
- + [Component Maifest: `analysis_service.x.y.z-[b]`](#component-maifest-analysis_servicexyz-b)
- + [Component Maifest: `cellanome_vcredist.x.y.z-[b]`](#component-maifest-cellanome_vcredistxyz-b)
- + [Component Maifest: `cellanome-cuda-toolkit.x.y.z-[b]`](#component-maifest-cellanome-cuda-toolkitxyz-b)
- + [Component Maifest: `cellanome-cudnn.x.y.z-[b]`](#component-maifest-cellanome-cudnnxyz-b)
- + [Component Maifest: `cellanome-folder.x.y.z-[b]`](#component-maifest-cellanome-folderxyz-b)
- + [Component Maifest: `cellanome-live-navigator.x.y.z-[b]`](#component-maifest-cellanome-live-navigatorxyz-b)
- + [Component Maifest: `cellanome-model-weights.x.y.z-[b]`](#component-maifest-cellanome-model-weightsxyz-b)
- + [Component Maifest: `cellanome-moxa.x.y.z-[b]`](#component-maifest-cellanome-moxaxyz-b)
- + [Component Maifest: `cellanome-vimba-apps.x.y.z-[b]`](#component-maifest-cellanome-vimba-appsxyz-b)
- + [Component Maifest: `cellanome-vio-mgr-simulator.x.y.z-[b]`](#component-maifest-cellanome-vio-mgr-simulatorxyz-b)
- + [Component Maifest: `cellanome-vips.x.y.z-[b]`](#component-maifest-cellanome-vipsxyz-b)
- + [Component Maifest: `cellanome-wsl-instrument.x.y.z-[b]`](#component-maifest-cellanome-wsl-instrumentxyz-b)
- + [Component Maifest: `cellanome-zlib.x.y.z-[b]`](#component-maifest-cellanome-zlibxyz-b)
- + [Component Maifest: `microscope-gui-package.x.y.z-[b]`](#component-maifest-microscope-gui-packagexyz-b)
+ + [System Manifest: `cellanome-system.x.y.z`](#system-Manifest-cellanome-systemxyz)
+ + [Component Manifest: `analysis_service.x.y.z-[b]`](#component-Manifest-analysis_servicexyz-b)
+ + [Component Manifest: `cellanome_vcredist.x.y.z-[b]`](#component-Manifest-cellanome_vcredistxyz-b)
+ + [Component Manifest: `cellanome-cuda-toolkit.x.y.z-[b]`](#component-Manifest-cellanome-cuda-toolkitxyz-b)
+ + [Component Manifest: `cellanome-cudnn.x.y.z-[b]`](#component-Manifest-cellanome-cudnnxyz-b)
+ + [Component Manifest: `cellanome-folder.x.y.z-[b]`](#component-Manifest-cellanome-folderxyz-b)
+ + [Component Manifest: `cellanome-live-navigator.x.y.z-[b]`](#component-Manifest-cellanome-live-navigatorxyz-b)
+ + [Component Manifest: `cellanome-model-weights.x.y.z-[b]`](#component-Manifest-cellanome-model-weightsxyz-b)
+ + [Component Manifest: `cellanome-moxa.x.y.z-[b]`](#component-Manifest-cellanome-moxaxyz-b)
+ + [Component Manifest: `cellanome-vimba-apps.x.y.z-[b]`](#component-Manifest-cellanome-vimba-appsxyz-b)
+ + [Component Manifest: `cellanome-vio-mgr-simulator.x.y.z-[b]`](#component-Manifest-cellanome-vio-mgr-simulatorxyz-b)
+ + [Component Manifest: `cellanome-vips.x.y.z-[b]`](#component-Manifest-cellanome-vipsxyz-b)
+ + [Component Manifest: `cellanome-wsl-instrument.x.y.z-[b]`](#component-Manifest-cellanome-wsl-instrumentxyz-b)
+ + [Component Manifest: `cellanome-zlib.x.y.z-[b]`](#component-Manifest-cellanome-zlibxyz-b)
+ + [Component Manifest: `microscope-gui-package.x.y.z-[b]`](#component-Manifest-microscope-gui-packagexyz-b)
 
 
 <br>
 
-### System Maifest: `cellanome-system.x.y.z`
+### System Manifest: `cellanome-system.x.y.z`
 
-This manifest is the top-level system manfiest file. While every maifest must have an artifact to install, the artifect specifed in the  `url` section only points to a dummy file and the contents of that artifact can be anything.
+This manifest is the top-level system manfiest file. While every Manifest must have an artifact to install, the artifect specifed in the  `url` section of this manifest only points to a dummy file and the contents of that artifact can be anything.
 
 This manifest has two special sections that need to be maintained:
 - the `depends` field
 - the `suggest` field
 
 #### System manifest `depends` field
-This field must contain a list of manifest files that specify all the **required** packages to be installed for the system.  **These mainifests will always be installed by the installer script.**
+This field must contain a list of manifest files that specify all the **required** components to be installed for the system.  **These mainifests will always be installed by the installer script.**
 
 
 
 #### System manifest `suggest` field
-This field should always contain the manifest for the Vio Manager simulator *that is compatible with the given system manifest*.  This package will be installed by the main installer script only if the user confirms its installation.
+This field should always contain the manifest for the Vio Manager simulator *that is compatible with the given system manifest*.  This component will be installed by the main installer script only if the user confirms its installation.
++ As of this writing, operation of both the simulation verion of the Vio Manager and the real Vio Manager is unknown at this time. $${\color{red}TBD - get and install the real vio manager}$$
 
 <br>
 
-### Component Maifest: `analysis_service.x.y.z-[b]`
+### Component Manifest: `analysis_service.x.y.z-[b]`
 
 Installs the Analyis Service
 
@@ -65,7 +66,7 @@ Installs the Analyis Service
 
 <br>
 
-### Component Maifest: `cellanome_vcredist.x.y.z-[b]`
+### Component Manifest: `cellanome_vcredist.x.y.z-[b]`
 
 Installs the Microsoft VC++ redistributables
 
@@ -75,7 +76,7 @@ Installs the Microsoft VC++ redistributables
 
 <br>
 
-### Component Maifest: `cellanome-cuda-toolkit.x.y.z-[b]`
+### Component Manifest: `cellanome-cuda-toolkit.x.y.z-[b]`
 
 Installs the Nvidia CUDA Toolkit
 
@@ -83,7 +84,7 @@ Special note: this manifest is a direct copy of the publically available Nvidia 
 
 <br>
 
-### Component Maifest: `cellanome-cudnn.x.y.z-[b]`
+### Component Manifest: `cellanome-cudnn.x.y.z-[b]`
 
 Installs the Nvidia CUDA Deep Neural Network
 
@@ -93,7 +94,7 @@ Installs the Nvidia CUDA Deep Neural Network
 
 <br>
 
-### Component Maifest: `cellanome-folder.x.y.z-[b]`
+### Component Manifest: `cellanome-folder.x.y.z-[b]`
 
 Installs Cellanome configuration files
 
@@ -103,7 +104,7 @@ Installs Cellanome configuration files
 
 <br>
 
-### Component Maifest: `cellanome-live-navigator.x.y.z-[b]`
+### Component Manifest: `cellanome-live-navigator.x.y.z-[b]`
 
 Installs Cellanome Flowcell Live application
 
@@ -112,7 +113,7 @@ Installs Cellanome Flowcell Live application
 
 <br>
 
-### Component Maifest: `cellanome-model-weights.x.y.z-[b]`
+### Component Manifest: `cellanome-model-weights.x.y.z-[b]`
 
 Installs Cellanome Model Weights used by the analysis processes.  Note that durring the post install section of the main Install script, the path to this file will be updated in the `instrument_configuration.json` file.
 
@@ -120,7 +121,7 @@ Installs Cellanome Model Weights used by the analysis processes.  Note that durr
 
 <br>
 
-### Component Maifest: `cellanome-moxa.x.y.z-[b]`
+### Component Manifest: `cellanome-moxa.x.y.z-[b]`
 
 Installs the MOXA UPort 1110/1130/1150 Windows Driver
 
@@ -129,7 +130,7 @@ Installs the MOXA UPort 1110/1130/1150 Windows Driver
 
 <br>
 
-### Component Maifest: `cellanome-vimba-apps.x.y.z-[b]`
+### Component Manifest: `cellanome-vimba-apps.x.y.z-[b]`
 
 Installs the Vimba USB Transport Layer driver and the Vimba support apps.
 
@@ -140,7 +141,7 @@ Installs the Vimba USB Transport Layer driver and the Vimba support apps.
 
 <br>
 
-### Component Maifest: `cellanome-vio-mgr-simulator.x.y.z-[b]`
+### Component Manifest: `cellanome-vio-mgr-simulator.x.y.z-[b]`
 
 Installs the Venture IO Manager (hardware) Simulator
 
@@ -150,7 +151,7 @@ Installs the Venture IO Manager (hardware) Simulator
 
 <br>
 
-### Component Maifest: `cellanome-vips.x.y.z-[b]`
+### Component Manifest: `cellanome-vips.x.y.z-[b]`
 
 Installs the [libvips](https://www.libvips.org/) image processing library
 
@@ -160,7 +161,7 @@ Installs the [libvips](https://www.libvips.org/) image processing library
 
 <br>
 
-### Component Maifest: `cellanome-wsl-instrument.x.y.z-[b]`
+### Component Manifest: `cellanome-wsl-instrument.x.y.z-[b]`
 
 Installs the Cellanome WSL linux distro image and AWS credentials folder.
 
@@ -170,7 +171,7 @@ Installs the Cellanome WSL linux distro image and AWS credentials folder.
 
 <br>
 
-### Component Maifest: `cellanome-zlib.x.y.z-[b]`
+### Component Manifest: `cellanome-zlib.x.y.z-[b]`
 
 Installs the [zlib](https://www.zlib.net/) compression library
 
@@ -179,7 +180,7 @@ Installs the [zlib](https://www.zlib.net/) compression library
 
 <br>
 
-### Component Maifest: `microscope-gui-package.x.y.z-[b]`
+### Component Manifest: `microscope-gui-package.x.y.z-[b]`
 
 Installs the Cellanome Microscope GUI Controller (backend) application.
 
