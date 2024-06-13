@@ -18,21 +18,21 @@ Each maifest is described in detail about what it contains and does.
 Fields of interest in each manifest are pointed out with details regading anything special about the manifest and the artifact it installs
 
 Manifests:
-[System Maifest: `cellanome-system.x.y.z`](#system-maifest-cellanome-systemxyz)
-[Component Maifest: `analysis_service.x.y.z-[b]`](#component-maifest-analysis_servicexyz)
-[Component Maifest: `cellanome_vcredist.x.y.z-[b]`](#component-maifest-cellanome_vcredist143833135-0json)
-[Component Maifest: `cellanome-cuda-toolkit.x.y.z-[b]`](#component-maifest-cellanome-cuda-toolkit1162)
-[Component Maifest: `cellanome-cudnn.x.y.z-[b]`](#component-maifest-cellanome-cudnnxyz-b)
-[Component Maifest: `cellanome-folder.x.y.z-[b]`](#component-maifest-cellanome-folderxyz-b)
-[Component Maifest: `cellanome-live-navigator.x.y.z-[b]`](#component-maifest-cellanome-live-navigatorxyz-b)
-[Component Maifest: `cellanome-model-weights.x.y.z-[b]`](#component-maifest-cellanome-model-weightsxyz-b)
-[Component Maifest: `cellanome-moxa.x.y.z-[b]`](#component-maifest-cellanome-moxaxyz-b)
-[Component Maifest: `cellanome-vimba-apps.x.y.z-[b]`](#component-maifest-cellanome-vimba-appsxyz-b)
-[Component Maifest: `cellanome-vio-mgr-simulator.x.y.z-[b]`](#component-maifest-cellanome-vio-mgr-simulatorxyz-b)
-[Component Maifest: `cellanome-vips.x.y.z-[b]`](#component-maifest-cellanome-vipsxyz-b)
-[Component Maifest: `cellanome-wsl-instrument.x.y.z-[b]`](#component-maifest-cellanome-wsl-instrumentxyz-b)
-[Component Maifest: `cellanome-zlib.x.y.z-[b]`](#component-maifest-cellanome-zlibxyz-b)
-[Component Maifest: `microscope-gui-package.x.y.z-[b]`](#component-maifest-microscope-gui-packagexyz-b)
+ + [System Maifest: `cellanome-system.x.y.z`](#system-maifest-cellanome-systemxyz)
+ + [Component Maifest: `analysis_service.x.y.z-[b]`](#component-maifest-analysis_servicexyz-b)
+ + [Component Maifest: `cellanome_vcredist.x.y.z-[b]`](#component-maifest-cellanome_vcredistxyz-b)
+ + [Component Maifest: `cellanome-cuda-toolkit.x.y.z-[b]`](#component-maifest-cellanome-cuda-toolkitxyz-b)
+ + [Component Maifest: `cellanome-cudnn.x.y.z-[b]`](#component-maifest-cellanome-cudnnxyz-b)
+ + [Component Maifest: `cellanome-folder.x.y.z-[b]`](#component-maifest-cellanome-folderxyz-b)
+ + [Component Maifest: `cellanome-live-navigator.x.y.z-[b]`](#component-maifest-cellanome-live-navigatorxyz-b)
+ + [Component Maifest: `cellanome-model-weights.x.y.z-[b]`](#component-maifest-cellanome-model-weightsxyz-b)
+ + [Component Maifest: `cellanome-moxa.x.y.z-[b]`](#component-maifest-cellanome-moxaxyz-b)
+ + [Component Maifest: `cellanome-vimba-apps.x.y.z-[b]`](#component-maifest-cellanome-vimba-appsxyz-b)
+ + [Component Maifest: `cellanome-vio-mgr-simulator.x.y.z-[b]`](#component-maifest-cellanome-vio-mgr-simulatorxyz-b)
+ + [Component Maifest: `cellanome-vips.x.y.z-[b]`](#component-maifest-cellanome-vipsxyz-b)
+ + [Component Maifest: `cellanome-wsl-instrument.x.y.z-[b]`](#component-maifest-cellanome-wsl-instrumentxyz-b)
+ + [Component Maifest: `cellanome-zlib.x.y.z-[b]`](#component-maifest-cellanome-zlibxyz-b)
+ + [Component Maifest: `microscope-gui-package.x.y.z-[b]`](#component-maifest-microscope-gui-packagexyz-b)
 
 
 <br>
