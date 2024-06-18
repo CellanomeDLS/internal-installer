@@ -1,4 +1,10 @@
-# Manifest Notes
+# Overview
+
+This repository is setup to be a standard Scoop repository containing folders and files that are used by the Scoop toolset.  Of most importance is the `bucket` folder which contains Scoop Manifest files for the Cellanome artifacts.
+
+<br>
+
+# Manifests
 1. A mainifest file is a scoop manifest file. See [Scoop](https://scoop.sh), the Scoop [wiki](https://github.com/ScoopInstaller/Scoop/wiki) and, most specifically, the description of [Scoop Manifest Files](https://github.com/ScoopInstaller/Scoop/wiki/App-Manifests).
 2. In this scoop bucket, each manifest file must be versioned. The versioning follows the [Semantic Versioning 2.0](https://semver.org) scheme. See the discussion in repository [instrument-installer](https://github.com/cellanome/instrument-installer/tree/main/design-documentation) for full details.
 3. A working knowledge of how Scoop Manifest files work is assumed.
@@ -12,6 +18,7 @@ For example:
 ```
 Note that the `[basename]` of the manifest file, **SHOULD NOT CHANGE**.  This is due to the fact that the installation script references some manifests for installation processing steps. If you do wish to change a manifest name, the `Install.ps1` script *may need to be updated* to remain in-sync. For example, the installation script needs to know name of the Analysis Service manifest, (named `analysis_service.x.y.z-[b]`) so that it can create the correct path to the executable for launching.
 
+<br>
 
 ## Manifest File Details
 
